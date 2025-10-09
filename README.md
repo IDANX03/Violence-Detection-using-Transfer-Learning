@@ -13,7 +13,7 @@ This deep learning model utilises transfer learning with four pre-trained CNN mo
 * Results
 
 # 🎯 Overview
-This project implements a violence detection system that uses transfer learning with pre-trained Convolutional Neural Networks (CNNs). The model analyses video frames and classifies them as violent or non-violent. By utilising transfer learning, the project achieves high accuracy while reducing training time and computational requirements. MobileNetV2 is considered to be the best performing model with accuracy up to 94%.
+This project implements a violence detection system that uses transfer learning with pre-trained Convolutional Neural Networks (CNNs). The model analyses video frames and classifies them as violent or non-violent. By utilising transfer learning, the project achieves high accuracy while reducing training time and computational requirements. MobileNetV2 is considered to be the best performing model among other models with accuracy up to 94%.
 
 # ✨ Key Hightlights
 * Best Model: MobileNetV2 achieving 94% accuracy.
