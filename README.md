@@ -3,7 +3,6 @@ This deep learning project uses transfer learning four pre-trained CNN models to
 * Overview
 * Key Highlights
 * Models 
-* Performance Comparison
 * Dataset
 * Methodology
 * Results
@@ -42,15 +41,6 @@ This project implements a violence detection system that uses transfer learning 
    * Parameters: ~20M trainable.
    * Best For: Feature extraction, transfer learning baseline.
 
-#  Performance Comparison
---------------------------------------------------------------------------------------------------------------------------------
-| Rank | Model          | Accuracy | Precision (Avg) | Recall (Avg) | F1-Score (Avg) | Correct Predictions | Wrong Predictions |
-|------|--------------- |----------|-----------------|--------------|----------------|---------------------|-------------------|
-| 1    | MobileNetV2    | 94%      | 94%             | 94%          | 94%            | 2196 / 2340         | 144               |
-| 2    | ResNet50V2     | 93%      | 93%             | 93%          | 93%            | 2187 / 2340         | 153               |
-| 3    | InceptionV3    | 92%      | 92%             | 92%          | 92%            | 2154 / 2340         | 186               |
-| 4    | VGG19          | 74%      | 76%             | 73%          | 72%            | 1726 / 2340         | 614               |
---------------------------------------------------------------------------------------------------------------------------------
 # Dataset
 The dataset is made up of YouTube videos with a range of settings that depict 
 both violent and non-violent human behaviour. The violent videos, which were 
@@ -62,3 +52,49 @@ this study, the dataset was shrunk to a more manageable size.
 
 For more details and to access the dataset, please visit the following link:  
 https://www.kaggle.com/datasets/mohamedmustafa/real-life-violence-situations-dataset 
+
+# Methodology
+
+## 1. Video Frame Extraction Pipeline
+Video Input → Frame Extraction → Augmentation → Preprocessing → Model Input
+### Frame Extraction Process:
+* Open video using OpenCV.
+* Extract every 7th frame to reduce redundancy.
+* Apply data augmentation techniques.
+* Convert BGR to RGB color space.
+* Resize to 128×128 pixels.
+* Normalize pixel values to [0, 1].
+
+### Data Augmentation Techniques:
+* Horizontal Flip: Simulates variations in orientation.
+* Zooming: scaling the picture by 30%.
+* Brightness: Randomly changes brightness between 100% and 130%.
+* Random Rotation: -25° to +25° range.
+
+## 2. Training 
+The dataset is split using stratified sampling to maintain balanced class distribution, with 70% allocated for training, 15% for validation, and 15% for testing. The optimisation techniques have been used for all the models to optimise 
+training and improve performance. Thses techniques help in preventing 
+overfitting, reduce training time and enhance the model’s generalisation. 
+### Loss Function & Optimizer
+* Loss:Binary Crossentropy
+* Optimizer: Adam (adaptive learning rate)
+### Regularization Techniques
+* L2 Regularization: Has been applied to dense layers which prevents overfitting by penalising large weights. Regularization strength: λ = 0.0001.
+* Dropout: Reduces co-adaptation of neurons.
+* Batch Normalization: Allows higher learning rates.
+### Callbacks & Training Control
+* ModelCheckpoint: Saves best weights based on validation loss. Weights saved in .h5 format.
+* EarlyStopping: Monitors validation loss. Restores best weights automatically
+* ReduceLROnPlateau: Reduces learning rate when validation loss plateaus.
+* Custom Callback: Stops training when accuracy ≥ 99.9%.
+  
+# Results 
+--------------------------------------------------------------------------------------------------------------------------------
+| Rank | Model          | Accuracy | Precision (Avg) | Recall (Avg) | F1-Score (Avg) | Correct Predictions | Wrong Predictions |
+|------|--------------- |----------|-----------------|--------------|----------------|---------------------|-------------------|
+| 1    | MobileNetV2    | 94%      | 94%             | 94%          | 94%            | 2196 / 2340         | 144               |
+| 2    | ResNet50V2     | 93%      | 93%             | 93%          | 93%            | 2187 / 2340         | 153               |
+| 3    | InceptionV3    | 92%      | 92%             | 92%          | 92%            | 2154 / 2340         | 186               |
+| 4    | VGG19          | 74%      | 76%             | 73%          | 72%            | 1726 / 2340         | 614               |
+--------------------------------------------------------------------------------------------------------------------------------
+MobileNetV2 emerged as the top performer with 94% accuracy, demonstrating that modern efficient architectures can outperform larger models. ResNet50V2 followed closely at 93%, leveraging its deep residual connections for strong feature learning. InceptionV3 achieved 92% with its multi-scale feature extraction approach. VGG19 significantly lagged at 74%, highlighting how older sequential architectures struggle compared to modern designs with skip connections and efficient convolutions.
