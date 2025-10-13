@@ -61,5 +61,4 @@ situations. However, in order to address computational issues and the focus of
 this study, the dataset was shrunk to a more manageable size.
 
 For more details and to access the dataset, please visit the following link:  
-https://www.kaggle.com/datasets/mohamedmustafa/real-life-violence
-situations-dataset 
+https://www.kaggle.com/datasets/mohamedmustafa/real-life-violence situations-dataset 
