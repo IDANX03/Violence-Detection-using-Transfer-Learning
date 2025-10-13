@@ -1,5 +1,5 @@
 # Violence-Detection-using-Transfer-Learning
-This deep learning project uses transfer learning four pre-trained CNN models to detct violence in a video. InceptionV3, MobileNetV2, ResNet50V2, and VGG19 are the models used to classify a video contains violence or not and perform a comparison between the models
+This deep learning project uses transfer learning four pre-trained CNN models to detct violence in a video. InceptionV3, MobileNetV2, ResNet50V2, and VGG19 are the models used to classify a video contains violence or not and perform a comparison between the models.
 * Overview
 * Key Highlights
 * Models 
